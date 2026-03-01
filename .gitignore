@@ -1,0 +1,15 @@
+# Backend
+backend/venv/
+backend/.env
+backend/__pycache__/
+backend/*.pyc
+backend/*.log
+backend/test_api_out.log
+backend/test_output.txt
+backend/vanefi.db
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/install_log.txt
+.DS_Store
