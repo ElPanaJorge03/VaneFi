@@ -11,9 +11,9 @@
   "categories": ["finance", "productivity"],
   "icons": [
     {
-      "src": "/minion-icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
+      "src": "/minion.png",
+      "sizes": "512x512",
+      "type": "image/png",
       "purpose": "any"
     }
   ]
