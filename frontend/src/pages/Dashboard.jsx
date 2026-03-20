@@ -117,7 +117,11 @@ export default function Dashboard() {
     const handleCreateMonth = async (e) => {
         e.preventDefault();
         try {
-            const res = await api.post('/months/', newMonthForm);
+            const payload = {
+                ...newMonthForm,
+                retencion: newMonthForm.retencion === '' ? 0 : Number(newMonthForm.retencion)
+            };
+            const res = await api.post('/months/', payload);
             setShowNewMonthObj(false);
             await loadBaseData();
             setActiveMonthId(res.data.id);
@@ -127,7 +131,9 @@ export default function Dashboard() {
             setActiveDate(new Date(res.data.anio, res.data.mes - 1, 1));
             setNewMonthForm({ anio: new Date().getFullYear(), mes: new Date().getMonth() + 1, ingreso_mensual: '', retencion: '' });
         } catch (err) {
-            alert(err.response?.data?.detail || 'Error al crear el mes');
+            const detail = err.response?.data?.detail;
+            const msg = Array.isArray(detail) ? detail.map(d => d.msg).join(', ') : (typeof detail === 'string' ? detail : 'Error al crear el mes');
+            alert(msg);
         }
     };
 
@@ -142,7 +148,9 @@ export default function Dashboard() {
             loadMonthData(activeMonthId);
             loadBaseData();
         } catch (err) {
-            alert(err.response?.data?.detail || 'Error al crear gasto');
+            const detail = err.response?.data?.detail;
+            const msg = Array.isArray(detail) ? detail.map(d => d.msg).join(', ') : (typeof detail === 'string' ? detail : 'Error al crear gasto');
+            alert(msg);
         }
     };
 
