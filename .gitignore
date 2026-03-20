@@ -7,9 +7,16 @@ backend/*.log
 backend/test_api_out.log
 backend/test_output.txt
 backend/vanefi.db
+backend/static/
+backend/check_users.py
 
 # Frontend
 frontend/node_modules/
 frontend/dist/
 frontend/install_log.txt
+
+# General
 .DS_Store
+.venv
+__pycache__
+

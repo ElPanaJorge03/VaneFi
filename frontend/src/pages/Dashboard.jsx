@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { LogOut, Home, Calendar as CalendarIcon, Wallet, FileText, Plus, AlertTriangle, ArrowUpRight, ArrowDownRight, Activity, Trash2, ChevronRight, ChevronLeft } from 'lucide-react';
+import { LogOut, Home, Calendar as CalendarIcon, Wallet, FileText, Plus, AlertTriangle, ArrowUpRight, ArrowDownRight, Activity, Trash2, ChevronRight, ChevronLeft, TrendingUp } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { format, startOfMonth, endOfMonth, startOfWeek, endOfWeek, addDays, isSameMonth, isSameDay, addMonths, subMonths } from 'date-fns';
 import { es } from 'date-fns/locale';
@@ -135,9 +135,10 @@ export default function Dashboard() {
         e.preventDefault();
         if (!activeMonthId) return alert("Crea primero un presupuesto para este mes.");
         try {
-            await api.post(`/months/${activeMonthId}/expenses/`, newExpenseForm);
+            const targetedDate = format(activeDate, 'yyyy-MM-dd');
+            await api.post(`/months/${activeMonthId}/expenses/`, { ...newExpenseForm, fecha: targetedDate });
             setShowNewExpense(false);
-            setNewExpenseForm({ ...newExpenseForm, monto: '' });
+            setNewExpenseForm({ ...newExpenseForm, monto: '', fecha: targetedDate });
             loadMonthData(activeMonthId);
             loadBaseData();
         } catch (err) {
@@ -399,6 +400,18 @@ export default function Dashboard() {
                                                 </span>
                                             </div>
                                         )}
+                                    </div>
+                                )}
+
+                                {summary && Number(summary.pronosticado) > 0 && (
+                                    <div className="card mb-6 flex items-center gap-4" style={{ padding: '1rem 1.5rem', borderLeft: '4px solid var(--color-success)' }}>
+                                        <div style={{ backgroundColor: 'rgba(46, 213, 115, 0.1)', padding: '0.75rem', borderRadius: '12px' }}>
+                                            <TrendingUp size={24} className="text-success" />
+                                        </div>
+                                        <div className="flex flex-col">
+                                            <span className="font-bold text-lg">Pronóstico: {formatCurrency(summary.pronosticado)}</span>
+                                            <span className="text-sm text-pearl" style={{ lineHeight: 1.4 }}>Según tu historial de meses anteriores, estimamos que este será tu nivel de gasto actual.</span>
+                                        </div>
                                     </div>
                                 )}
 

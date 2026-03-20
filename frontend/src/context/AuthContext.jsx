@@ -10,8 +10,14 @@ export const AuthProvider = ({ children }) => {
     const [token, setToken] = useState(localStorage.getItem('token'));
     const [loading, setLoading] = useState(true);
 
+    // En producción el frontend se sirve desde el mismo servidor que la API
+    const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    const apiBaseURL = isDev
+        ? `http://${window.location.hostname}:8000`
+        : window.location.origin;
+
     const api = axios.create({
-        baseURL: `http://${window.location.hostname}:8000`,
+        baseURL: apiBaseURL,
     });
 
     api.interceptors.request.use((config) => {

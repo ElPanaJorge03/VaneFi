@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { Mail, Lock, User, AlertCircle, ArrowRight, Wallet, Eye, EyeOff } from 'lucide-react';
+import { Mail, Lock, User, AlertCircle, ArrowRight, Wallet, Eye, EyeOff, ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
 
@@ -49,7 +49,16 @@ export default function Auth() {
     };
 
     return (
-        <div className="auth-container">
+        <div className="auth-container" style={{ position: 'relative' }}>
+            <button
+                onClick={() => navigate('/')}
+                className="text-pearl hover:text-peach flex items-center gap-1"
+                style={{ position: 'absolute', top: '2rem', left: '2rem', transition: 'color 0.2s', padding: '0.5rem', zIndex: 10 }}
+            >
+                <ArrowLeft size={20} />
+                <span className="font-medium" style={{ fontSize: '0.9rem' }}>Volver</span>
+            </button>
+
             <div className="logo-container">
                 <div className="logo-icon">
                     <Wallet size={36} strokeWidth={2.5} />
