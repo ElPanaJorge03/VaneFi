@@ -52,7 +52,7 @@ export default function Auth() {
         <div className="auth-container" style={{ position: 'relative' }}>
             <button
                 onClick={() => navigate('/')}
-                className="text-pearl hover:text-peach flex items-center gap-1"
+                className="text-muted hover:text-primary-color flex items-center gap-1"
                 style={{ position: 'absolute', top: '2rem', left: '2rem', transition: 'color 0.2s', padding: '0.5rem', zIndex: 10 }}
             >
                 <ArrowLeft size={20} />
@@ -152,7 +152,7 @@ export default function Auth() {
                             <button
                                 type="button"
                                 onClick={() => setShowPassword(!showPassword)}
-                                style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--color-pearl)', padding: 0 }}
+                                style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--color-text-muted)', padding: 0 }}
                             >
                                 {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                             </button>

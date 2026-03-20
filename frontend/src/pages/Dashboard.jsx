@@ -247,13 +247,13 @@ export default function Dashboard() {
 
     const renderSelectedDayHeader = () => (
         <div className="flex flex-col items-center justify-center mb-6" style={{ textAlign: 'center' }}>
-            <h1 style={{ fontSize: '4.5rem', lineHeight: 1, fontWeight: 700, margin: 0, color: 'var(--color-peach)' }}>
+            <h1 style={{ fontSize: '4.5rem', lineHeight: 1, fontWeight: 700, margin: 0, color: 'var(--color-text)' }}>
                 {format(activeDate, 'd')}
             </h1>
-            <h2 className="text-2xl capitalize mt-1" style={{ color: 'var(--color-pearl)' }}>
+            <h2 className="text-2xl capitalize mt-1" style={{ color: 'var(--color-text-muted)' }}>
                 {format(activeDate, 'MMMM yyyy', { locale: es })}
             </h2>
-            <p className="capitalize mt-1" style={{ color: 'var(--color-purple)', fontWeight: 600 }}>
+            <p className="capitalize mt-1" style={{ color: 'var(--color-primary)', fontWeight: 600 }}>
                 {format(activeDate, 'EEEE', { locale: es })}
             </p>
         </div>
@@ -316,7 +316,7 @@ export default function Dashboard() {
         );
     };
 
-    if (loading) return <div className="app-layout flex items-center justify-center text-pearl">Cargando datos...</div>;
+    if (loading) return <div className="app-layout flex items-center justify-center text-muted">Cargando datos...</div>;
 
     const activeDayExpenses = expenses.filter(e => e.fecha === format(activeDate, 'yyyy-MM-dd'));
     const displayedExpenses = listScope === 'mes' ? expenses : activeDayExpenses;
@@ -326,7 +326,7 @@ export default function Dashboard() {
             {/* SIDEBAR DESKTOP */}
             <aside className="sidebar">
                 <div className="flex items-center gap-1 mb-6" style={{ marginBottom: '3rem' }}>
-                    <div style={{ width: 32, height: 32, borderRadius: 8, background: 'linear-gradient(135deg, var(--color-purple), #8a6ef5)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <div style={{ width: 32, height: 32, borderRadius: 8, background: 'linear-gradient(135deg, var(--color-primary), #4CAF50)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <Wallet size={18} color="white" />
                     </div>
                     <span style={{ fontSize: '1.25rem', fontWeight: 700, marginLeft: '0.5rem' }}>VaneFi</span>
@@ -356,7 +356,7 @@ export default function Dashboard() {
                                 </div>
                             )}
                         </h1>
-                        <p className="text-pearl text-sm mt-1">
+                        <p className="text-muted text-sm mt-1">
                             {currentView === 'resumen' && 'Organiza y visualiza tus movimientos del día a día.'}
                             {currentView === 'meses' && 'Crea y administra tus presupuestos base.'}
                             {currentView === 'ahorro' && 'La sumatoria de todas tus retenciones intocables.'}
@@ -365,7 +365,7 @@ export default function Dashboard() {
                     </div>
 
                     <div style={{ display: window.innerWidth > 768 ? 'none' : 'block' }}>
-                        <button onClick={handleLogout} className="text-pearl"><LogOut size={24} /></button>
+                        <button onClick={handleLogout} className="text-muted"><LogOut size={24} /></button>
                     </div>
                 </div>
 
@@ -377,9 +377,9 @@ export default function Dashboard() {
 
                         {!activeMonthId ? (
                             <div className="card text-center flex flex-col items-center justify-center" style={{ padding: '3rem 2rem' }}>
-                                <CalendarIcon size={40} className="text-pearl mb-4" />
-                                <h3 className="text-xl mb-2 text-pearl">Mes sin presupuesto</h3>
-                                <p className="text-pearl mb-4">No has asignado un ingreso base para este mes.</p>
+                                <CalendarIcon size={40} className="text-muted mb-4" />
+                                <h3 className="text-xl mb-2 text-muted">Mes sin presupuesto</h3>
+                                <p className="text-muted mb-4">No has asignado un ingreso base para este mes.</p>
                                 <button className="btn" onClick={() => {
                                     setNewMonthForm({ ...newMonthForm, mes: activeDate.getMonth() + 1, anio: activeDate.getFullYear() });
                                     setCurrentView('meses');
@@ -389,20 +389,20 @@ export default function Dashboard() {
                         ) : (
                             <>
                                 {summary && (
-                                    <div className="card mb-6" style={{ background: 'linear-gradient(135deg, var(--color-martinique-light), var(--color-martinique))', padding: '1rem 1.5rem' }}>
+                                    <div className="card mb-6" style={{ background: 'linear-gradient(135deg, var(--color-surface-light), var(--color-surface))', padding: '1rem 1.5rem' }}>
                                         <div className="flex justify-between items-center">
                                             <div className="flex flex-col">
-                                                <span className="text-sm text-pearl">Balance Disponible Mes</span>
+                                                <span className="text-sm text-muted">Balance Disponible Mes</span>
                                                 <span className="text-2xl font-bold">{formatCurrency(summary.ahorro)}</span>
                                             </div>
                                             <div className="flex flex-col" style={{ textAlign: 'right' }}>
-                                                <span className="text-sm text-pearl">% de Ingreso</span>
-                                                <span className={`text-lg font-bold ${summary.alerta ? 'text-danger' : 'text-purple'}`}>{summary.porcentaje_gastado}%</span>
+                                                <span className="text-sm text-muted">% de Ingreso</span>
+                                                <span className={`text-lg font-bold ${summary.alerta ? 'text-danger' : 'text-primary'}`}>{summary.porcentaje_gastado}%</span>
                                             </div>
                                         </div>
                                         {Number(summary.retencion) > 0 && (
                                             <div className="flex items-center justify-between" style={{ borderTop: '1px solid rgba(255, 255, 255, 0.05)', marginTop: '1rem', paddingTop: '1rem' }}>
-                                                <span className="text-sm text-pearl flex items-center gap-2">
+                                                <span className="text-sm text-muted flex items-center gap-2">
                                                     <Wallet size={16} className="text-success" />
                                                     Retenido este mes: <strong className="text-success">{formatCurrency(summary.retencion)}</strong>
                                                 </span>
@@ -418,7 +418,7 @@ export default function Dashboard() {
                                         </div>
                                         <div className="flex flex-col">
                                             <span className="font-bold text-lg">Pronóstico: {formatCurrency(summary.pronosticado)}</span>
-                                            <span className="text-sm text-pearl" style={{ lineHeight: 1.4 }}>Según tu historial de meses anteriores, estimamos que este será tu nivel de gasto actual.</span>
+                                            <span className="text-sm text-muted" style={{ lineHeight: 1.4 }}>Según tu historial de meses anteriores, estimamos que este será tu nivel de gasto actual.</span>
                                         </div>
                                     </div>
                                 )}
@@ -429,12 +429,12 @@ export default function Dashboard() {
                                         <div style={{ display: 'flex', backgroundColor: 'rgba(1, 1, 1, 0.4)', borderRadius: '20px', padding: '4px' }}>
                                             <button
                                                 onClick={() => setListScope('dia')}
-                                                style={{ border: 'none', cursor: 'pointer', padding: '4px 12px', borderRadius: '16px', fontSize: '0.8rem', backgroundColor: listScope === 'dia' ? 'var(--color-purple)' : 'transparent', color: listScope === 'dia' ? 'white' : 'var(--color-pearl)' }}>
+                                                style={{ border: 'none', cursor: 'pointer', padding: '4px 12px', borderRadius: '16px', fontSize: '0.8rem', backgroundColor: listScope === 'dia' ? 'var(--color-primary)' : 'transparent', color: listScope === 'dia' ? 'white' : 'var(--color-text-muted)' }}>
                                                 Día {format(activeDate, 'd')}
                                             </button>
                                             <button
                                                 onClick={() => setListScope('mes')}
-                                                style={{ border: 'none', cursor: 'pointer', padding: '4px 12px', borderRadius: '16px', fontSize: '0.8rem', backgroundColor: listScope === 'mes' ? 'var(--color-purple)' : 'transparent', color: listScope === 'mes' ? 'white' : 'var(--color-pearl)' }}>
+                                                style={{ border: 'none', cursor: 'pointer', padding: '4px 12px', borderRadius: '16px', fontSize: '0.8rem', backgroundColor: listScope === 'mes' ? 'var(--color-primary)' : 'transparent', color: listScope === 'mes' ? 'white' : 'var(--color-text-muted)' }}>
                                                 Mes Entero
                                             </button>
                                         </div>
@@ -445,7 +445,7 @@ export default function Dashboard() {
                                 </div>
 
                                 {showNewExpense && (
-                                    <div className="card mb-6" style={{ background: 'rgba(58, 49, 83, 0.4)' }}>
+                                    <div className="card mb-6" style={{ background: 'rgba(26, 107, 58, 0.4)' }}>
                                         <form onSubmit={handleCreateExpense} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '1rem', alignItems: 'end' }}>
                                             <div className="input-group" style={{ marginBottom: 0 }}>
                                                 <label>Categoría</label>
@@ -475,18 +475,18 @@ export default function Dashboard() {
 
                                 <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
                                     {displayedExpenses.length === 0 ? (
-                                        <p className="text-pearl" style={{ padding: '2rem', textAlign: 'center' }}>Limpieza total. No hay gastos {listScope === 'dia' ? 'este día' : 'en todo este mes'}.</p>
+                                        <p className="text-muted" style={{ padding: '2rem', textAlign: 'center' }}>Limpieza total. No hay gastos {listScope === 'dia' ? 'este día' : 'en todo este mes'}.</p>
                                     ) : (
                                         <div className="flex flex-col" style={{ maxHeight: '300px', overflowY: 'auto' }}>
                                             {displayedExpenses.map((exp, idx) => (
                                                 <div key={exp.id} className="flex justify-between items-center" style={{ padding: '1rem 1.5rem', borderBottom: idx !== displayedExpenses.length - 1 ? '1px solid rgba(177, 174, 187, 0.1)' : 'none' }}>
                                                     <div className="flex flex-col gap-1">
                                                         <span style={{ fontWeight: 500 }}>{exp.concepto} <span style={{ fontSize: '0.75rem', marginLeft: '0.5rem', opacity: 0.6, fontWeight: 400 }}>{exp.fecha}</span></span>
-                                                        <span className="text-pearl text-sm">{exp.forma_pago}</span>
+                                                        <span className="text-muted text-sm">{exp.forma_pago}</span>
                                                     </div>
                                                     <div className="flex items-center gap-1" style={{ gap: '1rem' }}>
                                                         <span className="text-danger font-bold">-{formatCurrency(exp.monto)}</span>
-                                                        <button onClick={() => handleDeleteExpense(exp.id)} className="text-pearl hover:text-danger" style={{ transition: 'color 0.2s', background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>
+                                                        <button onClick={() => handleDeleteExpense(exp.id)} className="text-muted hover:text-danger" style={{ transition: 'color 0.2s', background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>
                                                             <Trash2 size={18} />
                                                         </button>
                                                     </div>
@@ -541,7 +541,7 @@ export default function Dashboard() {
                         <div style={{ display: 'grid', gap: '1rem', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))' }}>
                             {months.map(m => (
                                 <div key={m.id} className="card flex items-center justify-between"
-                                    style={{ cursor: 'pointer', border: activeMonthId === m.id ? '2px solid var(--color-purple)' : '1px solid rgba(177, 174, 187, 0.05)' }}
+                                    style={{ cursor: 'pointer', border: activeMonthId === m.id ? '2px solid var(--color-primary)' : '1px solid rgba(177, 174, 187, 0.05)' }}
                                     onClick={() => {
                                         setActiveMonthId(m.id);
                                         setActiveDate(new Date(m.anio, m.mes - 1, 1));
@@ -550,13 +550,13 @@ export default function Dashboard() {
                                 >
                                     <div className="flex flex-col">
                                         <span className="text-lg font-bold capitalize">{format(new Date(m.anio, m.mes - 1, 1), 'MMMM yyyy', { locale: es })}</span>
-                                        <span className="text-pearl text-sm mt-1">Ingreso: {formatCurrency(m.ingreso_mensual)}</span>
+                                        <span className="text-muted text-sm mt-1">Ingreso: {formatCurrency(m.ingreso_mensual)}</span>
                                     </div>
                                     <div className="flex items-center gap-4">
-                                        <button onClick={(e) => handleDeleteMonth(e, m.id)} className="text-pearl hover:text-danger" style={{ transition: 'color 0.2s', background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>
+                                        <button onClick={(e) => handleDeleteMonth(e, m.id)} className="text-muted hover:text-danger" style={{ transition: 'color 0.2s', background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>
                                             <Trash2 size={18} />
                                         </button>
-                                        <ChevronRight className="text-pearl" />
+                                        <ChevronRight className="text-muted" />
                                     </div>
                                 </div>
                             ))}
@@ -571,11 +571,11 @@ export default function Dashboard() {
                             <div style={{ width: 80, height: 80, borderRadius: '50%', backgroundColor: 'rgba(46, 213, 115, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
                                 <Wallet size={40} className="text-success" />
                             </div>
-                            <p className="text-pearl text-lg mb-2">Total Retenido (Histórico)</p>
+                            <p className="text-muted text-lg mb-2">Total Retenido (Histórico)</p>
                             <h2 className="text-5xl font-bold text-success mb-6">
                                 {formatCurrency(months.reduce((acc, current) => acc + Number(current.retencion), 0))}
                             </h2>
-                            <p className="text-pearl text-sm max-w-md mx-auto">Este dinero proviene de la métrica de reserva pasiva que defines de tu ingreso base.</p>
+                            <p className="text-muted text-sm max-w-md mx-auto">Este dinero proviene de la métrica de reserva pasiva que defines de tu ingreso base.</p>
                         </div>
 
                         <h3 className="text-xl mb-4">Retenciones por mes</h3>
@@ -621,25 +621,25 @@ export default function Dashboard() {
                 {currentView === 'balance' && (
                     <div className="fade-in-up delay-1" style={{ maxWidth: '800px', margin: '0 auto' }}>
                         <div className="card flex items-center flex-col justify-center" style={{ textAlign: 'center', padding: '3rem 2rem', marginBottom: '2rem' }}>
-                            <FileText size={40} className="text-purple mb-4" />
-                            <p className="text-pearl">Historial de Sobrantes Consensuados.</p>
+                            <FileText size={40} className="text-primary mb-4" />
+                            <p className="text-muted">Historial de Sobrantes Consensuados.</p>
                             <h2 className="text-5xl font-bold mt-4">
                                 {formatCurrency(historicalData.reduce((acc, current) => acc + Number(current.summary.ahorro), 0))}
                             </h2>
-                            <p className="text-pearl text-sm max-w-md mx-auto mt-2">Corresponde al total del dinero libre restante tras restar gastos a tus ahorros a lo largo de los meses.</p>
+                            <p className="text-muted text-sm max-w-md mx-auto mt-2">Corresponde al total del dinero libre restante tras restar gastos a tus ahorros a lo largo de los meses.</p>
                         </div>
 
                         <h3 className="text-xl mb-4">Balance por mes</h3>
                         <div className="flex flex-col gap-4">
                             {historicalData.map(m => (
-                                <div key={m.id} className="card flex justify-between items-center flex-wrap gap-4" style={{ padding: '1rem 1.5rem', borderLeft: m.summary.ahorro < 0 ? '4px solid var(--color-danger)' : '4px solid var(--color-purple)' }}>
+                                <div key={m.id} className="card flex justify-between items-center flex-wrap gap-4" style={{ padding: '1rem 1.5rem', borderLeft: m.summary.ahorro < 0 ? '4px solid var(--color-danger)' : '4px solid var(--color-primary)' }}>
                                     <div className="flex flex-col">
                                         <span className="font-bold capitalize">{format(new Date(m.anio, m.mes - 1, 1), 'MMMM yyyy', { locale: es })}</span>
-                                        <span className="text-pearl text-sm">Ingreso: {formatCurrency(m.ingreso_mensual)} | Gastos: {formatCurrency(m.summary.gastos_totales)}</span>
+                                        <span className="text-muted text-sm">Ingreso: {formatCurrency(m.ingreso_mensual)} | Gastos: {formatCurrency(m.summary.gastos_totales)}</span>
                                     </div>
                                     <div className="text-right">
-                                        <span className={`text-xl font-bold ${m.summary.ahorro < 0 ? 'text-danger' : 'text-purple'}`}>{formatCurrency(m.summary.ahorro)}</span>
-                                        <p className="text-sm text-pearl" style={{ opacity: 0.8 }}>Sobrante</p>
+                                        <span className={`text-xl font-bold ${m.summary.ahorro < 0 ? 'text-danger' : 'text-primary'}`}>{formatCurrency(m.summary.ahorro)}</span>
+                                        <p className="text-sm text-muted" style={{ opacity: 0.8 }}>Sobrante</p>
                                     </div>
                                 </div>
                             ))}
