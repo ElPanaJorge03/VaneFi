@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
+import BirthdayModal from '../components/BirthdayModal';
 import { Mail, Lock, User, AlertCircle, ArrowRight, Wallet, Eye, EyeOff, ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
@@ -10,6 +11,8 @@ export default function Auth() {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
+    const [showBirthdayModal, setShowBirthdayModal] = useState(false);
+    const [userName, setUserName] = useState('');
 
     const { login, register } = useAuth();
     const navigate = useNavigate();
@@ -22,6 +25,7 @@ export default function Auth() {
         try {
             if (isLogin) {
                 await login(formData.email, formData.password);
+                navigate('/dashboard');
             } else {
                 if (formData.email !== formData.confirmEmail) {
                     setError('Los correos electrónicos no coinciden.');
@@ -35,8 +39,9 @@ export default function Auth() {
                     return;
                 }
                 await register(formData.nombre, formData.email, formData.password);
+                setUserName(formData.nombre);
+                setShowBirthdayModal(true);
             }
-            navigate('/dashboard');
         } catch (err) {
             setError(err.message);
         } finally {
@@ -48,8 +53,18 @@ export default function Auth() {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
+    const handleBirthdayClose = () => {
+        setShowBirthdayModal(false);
+        setTimeout(() => navigate('/dashboard'), 300);
+    };
+
     return (
         <div className="auth-container" style={{ position: 'relative' }}>
+            <BirthdayModal 
+                isOpen={showBirthdayModal} 
+                onClose={handleBirthdayClose}
+                userName={userName}
+            />
             <button
                 onClick={() => navigate('/')}
                 className="text-muted hover:text-primary-color flex items-center gap-1"

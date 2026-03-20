@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
+import InstallButton from '../components/InstallButton';
 import { LogOut, Home, Calendar as CalendarIcon, Wallet, FileText, Plus, AlertTriangle, ArrowUpRight, ArrowDownRight, Activity, Trash2, ChevronRight, ChevronLeft, TrendingUp } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { format, startOfMonth, endOfMonth, startOfWeek, endOfWeek, addDays, isSameMonth, isSameDay, addMonths, subMonths } from 'date-fns';
@@ -648,6 +649,8 @@ export default function Dashboard() {
                 )}
 
             </main>
+
+            <InstallButton />
 
             {renderNav(true)}
         </div>

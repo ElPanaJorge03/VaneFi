@@ -1,0 +1,12 @@
+{
+  "name": "VaneFi - Gestor de Finanzas Personal",
+  "short_name": "VaneFi",
+  "description": "Una aplicación simple y elegante para gestionar tus finanzas personales",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#08120b",
+  "theme_color": "#00A86B",
+  "categories": ["finance", "productivity"]
+}

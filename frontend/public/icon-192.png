@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <style>
+      .bg { fill: #0a0e12; }
+      .icon { fill: none; stroke: #6366f1; stroke-width: 32; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+  <rect class="bg" width="512" height="512"/>
+  <circle cx="256" cy="256" r="240" class="icon"/>
+  <path d="M 256 156 L 310 240 L 400 256 L 340 310 L 355 400 L 256 360 L 157 400 L 172 310 L 112 256 L 202 240 Z" class="icon"/>
+  <circle cx="256" cy="256" r="80" class="icon"/>
+</svg>
