@@ -8,5 +8,13 @@
   "orientation": "portrait-primary",
   "background_color": "#08120b",
   "theme_color": "#00A86B",
-  "categories": ["finance", "productivity"]
+  "categories": ["finance", "productivity"],
+  "icons": [
+    {
+      "src": "/minion-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
 }

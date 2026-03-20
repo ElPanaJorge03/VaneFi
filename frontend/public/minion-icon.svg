@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Body (Yellow) -->
+  <ellipse cx="100" cy="110" rx="55" ry="60" fill="#FFD700"/>
+  
+  <!-- Head -->
+  <circle cx="100" cy="60" r="45" fill="#FFD700"/>
+  
+  <!-- Eye (single for Bob) -->
+  <circle cx="100" cy="55" r="22" fill="#E8E8E8"/>
+  <circle cx="100" cy="55" r="18" fill="#4A90E2"/>
+  <circle cx="102" cy="52" r="10" fill="black"/>
+  <circle cx="104" cy="50" r="4" fill="white"/>
+  
+  <!-- Mouth -->
+  <path d="M 85 75 Q 100 88 115 75" stroke="black" stroke-width="4" fill="none" stroke-linecap="round"/>
+  
+  <!-- Overalls (Blue) -->
+  <path d="M 50 105 L 50 160 Q 50 175 60 175 L 75 175 L 75 140 L 100 140 L 100 175 L 125 175 L 140 175 Q 150 175 150 160 L 150 105" fill="#1E90FF"/>
+  
+  <!-- Overalls straps -->
+  <rect x="75" y="100" width="8" height="45" fill="#1E90FF"/>
+  <rect x="117" y="100" width="8" height="45" fill="#1E90FF"/>
+  
+  <!-- Pockets/Details on overalls -->
+  <rect x="65" y="120" width="12" height="20" fill="#FFD700"/>
+  <rect x="123" y="120" width="12" height="20" fill="#FFD700"/>
+  
+  <!-- Arms -->
+  <ellipse cx="45" cy="115" rx="15" ry="35" fill="#FFD700"/>
+  <ellipse cx="155" cy="115" rx="15" ry="35" fill="#FFD700"/>
+  
+  <!-- Hand details -->
+  <circle cx="40" cy="150" r="10" fill="#FFD700"/>
+  <circle cx="160" cy="150" r="10" fill="#FFD700"/>
+  
+  <!-- Feet -->
+  <ellipse cx="75" cy="175" rx="12" ry="15" fill="#1E90FF"/>
+  <ellipse cx="125" cy="175" rx="12" ry="15" fill="#1E90FF"/>
+</svg>
